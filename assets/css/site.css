@@ -267,3 +267,20 @@ body{
     }
 }
 
+.sitenav-submenu:hover {
+    color:black!important;
+    /* this is the bootstrap "panel-success"
+       color.
+    */
+    background-color:#809a00!important;
+    font-weight:900;
+}
+
+.dropdown:hover .dropdown-menu{
+    display: block;
+}
+
+.dropdown-menu{
+    margin-top: 0;
+}
+
