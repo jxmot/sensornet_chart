@@ -157,7 +157,7 @@
 }
 
 .sensornet-overview-title:hover {
-    font-style:italic;
+    /* font-style:italic; */
 }
 
 .sensornet-overview-close:hover {
@@ -216,6 +216,7 @@
 .cost-table-cell-head-title {
     padding-left: 1em;
     padding-right: 1em;
+    text-align: center;
 }
 
 .cost-table-cell-item {
@@ -295,23 +296,10 @@ header > h6 {
     cursor: pointer!important;
 }
 
+.chart-panel-body {
+    padding-bottom: 5%;
+}
 
 #chart {
     padding: 2.5%;
 }
-
-
-.history-ctrls {
-    height: 80px;
-    position: relative;
-}
-
-.history-ctrls-vcenter {
-    position: absolute;
-    top: 50%;
-}
-
-.time-selected {
-    color:lightblue!important;
-}
-
