@@ -20,7 +20,7 @@
 var temps = [];
 var humid = [];
 // contains the minimum values that are used for
-// scaling the Y-axes
+// scaling the Y-axes when chartiing a single sensor
 var mins = {
     t: 0,
     h: 0
@@ -37,15 +37,17 @@ var names = [];
 // device ID -> [t color, h color]
 var colors = [];
 
+// contains statistics for each sensor: 
+//      oldest timestamp
+//      record count
+var stats = {};
+
 // TODO: multiple configs? in an array?
 // TODO: functions to handle specific configs
 
-// chart config
+// chart config - refer to the Apex Charts documentation
 var histchart_cfg = {
-    series: [
-//        {name: '°F', data: temps},
-//        {name: '%RH', data: humid}
-    ],
+    series: [],
     theme: {
         mode:'dark'
     },
@@ -60,12 +62,23 @@ var histchart_cfg = {
         zoom: {
             type: 'x',
             enabled: true,
-            autoScaleYaxis: true
+            autoScaleYaxis: false
         },
         toolbar: {
             autoSelected: 'zoom',
             tools: { 
-                download: false 
+                download: true 
+            },
+            export: {
+                csv: {
+                    filename: undefined
+                },
+                svg: {
+                    filename: undefined
+                },
+                png: {
+                    filename: undefined
+                }
             }
         }
     },
