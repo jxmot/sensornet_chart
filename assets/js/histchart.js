@@ -112,6 +112,10 @@ $(document).on('hist_show', function(e, _hist) {
             chart.destroy();
             histchart_cfg.series = [];
             histchart_cfg.title.text = names[hist.query.dev_id[0]];
+            var fname = names[hist.query.dev_id[0]]+'-'+hist.query.dev_id[0];
+            histchart_cfg.chart.toolbar.export.csv.filename = fname;
+            histchart_cfg.chart.toolbar.export.svg.filename = fname;
+            histchart_cfg.chart.toolbar.export.png.filename = fname;
             loadSeries(hist.data);
             histchart_cfg.series = [
                 {name: '°F', data: temps},
@@ -162,11 +166,20 @@ $(document).on('hist_show', function(e, _hist) {
             chart.destroy();
             histchart_cfg.series = [];
             histchart_cfg.title.text = '';
+            histchart_cfg.chart.toolbar.export.csv.filename = undefined;
+            histchart_cfg.chart.toolbar.export.svg.filename = undefined;
+            histchart_cfg.chart.toolbar.export.png.filename = undefined;
+            var tmp = '';
             hist.query.dev_id.forEach(function(devid, index) {
                 histchart_cfg.title.text += names[devid];
-                if(index < (hist.query.dev_id.length - 1))
+                tmp += names[devid];
+                if(index < (hist.query.dev_id.length - 1)) {
                     histchart_cfg.title.text += ', ';
+                    tmp += '-';
+                }
             });
+            histchart_cfg.chart.toolbar.export.svg.filename = (tmp === '' ? undefined : tmp);
+            histchart_cfg.chart.toolbar.export.png.filename = (tmp === '' ? undefined : tmp);
     
             loadTempSeries(hist.data);
             // blank series object
