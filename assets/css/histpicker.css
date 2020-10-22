@@ -1,0 +1,82 @@
+/*
+    Improve the appearance of the date
+    after one has been picked.
+*/
+#histpicker {
+    color: black!important;
+    font-weight:900;
+}
+
+/*
+    Use an appropriate cursor, the <input> isn't 
+    being used for keyboard entry when it's enabled.
+*/
+#histpicker:not([disabled]) {
+    cursor:pointer!important;
+}
+
+/*
+    For consistancy make sure the calendar icon will
+    show the appropriate cursor when disabled.
+*/
+button.Zebra_DatePicker_Icon.Zebra_DatePicker_Icon_Disabled {
+    cursor:not-allowed!important;
+}
+
+/*
+    Highlight days that are enabled for picking.
+    NOTE: Requires changes to zebra_datepicker.src.js
+*/
+.dp_enabled {
+    color: #77b300!important;
+    font-weight:900;
+}
+
+/*
+    Applied by code when option `select_other_months: true`
+*/
+.dp_available {
+    color: #77b300!important;
+    font-style: italic;
+}
+
+/*
+    Over ride the cursor and change the color 
+    when we're disabling the prev or next month 
+    controls
+*/
+.dp_actionoff {
+    cursor: auto!important;
+    color: red!important
+}
+
+/*
+    Used when disabling the view selection,
+    requires the _view_days_only option to
+    be true
+*/
+.dp_viewoff {
+    cursor: auto!important;
+}
+
+/*
+    Improves the appearance by making the hover
+    over text visible
+*/
+.Zebra_DatePicker .dp_body .dp_hover {
+    background: #dedede;
+    color: black!important;
+}
+
+.Zebra_DatePicker .dp_actions .dp_hover {
+    background-color: #dedede;
+    color: black!important;
+}
+
+/*
+    Improve the appearance by making the current
+    date easier to see.
+*/
+.Zebra_DatePicker .dp_body .dp_current {
+    font-weight:900;
+}
