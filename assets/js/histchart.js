@@ -72,6 +72,29 @@ $(document).on('config', function(e, _config) {
     });
 });
 
+// incoming sensor statistical data...
+$(document).on('stats', function(e, _stats) {
+    stats = JSON.parse(_stats);
+    var oldest = 33159013323000; // Oct 7, 3020 @ 4:02:03 PM GMT-05:00
+    var sens = '';
+    var total = 0;
+    for(var key of Object.keys(stats.data)) {
+        consolelog(`stats - ${key} : ${stats.data[key].oldest}  ${stats.data[key].total}`);
+        if(stats.data[key].oldest < oldest) {
+            oldest = stats.data[key].oldest;
+            sens = key;
+        }
+        total = total + stats.data[key].total;
+    }
+    if(total > 0) {
+        var d = new Date(oldest);
+        consolelog(`stats - ${sens} ${d} ${total}`);
+        stats = Object.assign({}, stats, {total: total, limit: oldest, sens: sens});
+        // update the date picker with the oldest possible date
+        $(document).trigger('pickerupdate', stats.limit);
+    }
+});
+
 // incoming history data...
 $(document).on('hist_show', function(e, _hist) {
     var hist = JSON.parse(_hist);
