@@ -1,32 +1,6 @@
-/* **********************************************
-// Load canned data
-//
-// collate the data
-for(var ix = 0;ix < sensordata.length; ix++) {
-    colldata[sensordata[ix].dev_id].push(sensordata[ix]);
-}
-
-// proof that it worked
-console.log(colldata['ESP_49ECCD'].length);
-console.log(colldata['ESP_49F542'].length);
-console.log(colldata['ESP_49EC8B'].length);
-console.log(colldata['ESP_49EB40'].length);
-
-// transfer some data from the collation into the 
-// chart series data
-var device = histchart_cfg.title.text = 'ESP_49ECCD';
-
-for(ix = 0; ix < colldata[device].length; ix++) {
-    var arr = [colldata[device][ix].tstamp, colldata[device][ix].t];
-    temps.push(arr);
-
-    arr = [colldata[device][ix].tstamp, colldata[device][ix].h];
-    humid.push(arr);
-}
-
-********************************************** */
 /* ********************************************** */
 var chart = {};
+
 function newChart(newcfg = undefined) {
     // create & render the chart using the data series
     if(newcfg === undefined)
@@ -35,14 +9,6 @@ function newChart(newcfg = undefined) {
         chart = new ApexCharts(document.querySelector('#chart'), newcfg);
 
     chart.render();
-};
-
-function collateData(newdata) {
-    // collate the data
-    colldata = null;
-    for(var ix = 0;ix < newdata.length; ix++) {
-        colldata[newdata[ix].dev_id].push(newdata[ix]);
-    }
 };
 
 function loadSeries(data) {
