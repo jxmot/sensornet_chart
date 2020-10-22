@@ -6,23 +6,27 @@
 var socket;
 var socketready = false;
 
-const STATUS_EN_BIT = 0b00000001;
-const DATA_EN_BIT   = 0b00000010;
-const HIST_EN_BIT   = 0b00000100;
-const CONFIG_EN_BIT = 0b00001000;
-const PURGE_EN_BIT  = 0b00010000;
-const WXF_EN_BIT    = 0b00100000;
-const WXO_EN_BIT    = 0b01000000;
-
-const FUTURE_EN_BIT = 0b10000000;
+const STATUS_EN_BIT = 0b000000001;
+const DATA_EN_BIT   = 0b000000010;
+const HIST_EN_BIT   = 0b000000100;
+const CONFIG_EN_BIT = 0b000001000;
+const PURGE_EN_BIT  = 0b000010000;
+const WXF_EN_BIT    = 0b000100000;
+const WXO_EN_BIT    = 0b001000000;
+const STATS_EN_BIT  = 0b010000000;
+const FUTURE_EN_BIT = 0b100000000;
 
 const GAUGAPP_EN_BITS = (STATUS_EN_BIT | DATA_EN_BIT | PURGE_EN_BIT | WXF_EN_BIT | WXO_EN_BIT);
-const HISTAPP_EN_BITS = (HIST_EN_BIT | CONFIG_EN_BIT);
+const HISTAPP_EN_BITS = (HIST_EN_BIT | CONFIG_EN_BIT | STATS_EN_BIT);
+
+var currOptions = FUTURE_EN_BIT;
 
 function initSocket(optbits = FUTURE_EN_BIT) {
 
     if(socketready === true) {
         consolelog('WARNING - socket is already connected');
+        consolelog('INFO - applyOptions -> optbits ');
+        applyOptions(optbits);
         return;
     }
 
@@ -58,30 +62,39 @@ function initSocket(optbits = FUTURE_EN_BIT) {
         }
         else socketready = false;
     });
+    applyOptions(optbits);
+};
 
-    if(optbits & FUTURE_EN_BIT)
+function applyOptions(opts) {
+    if(opts === FUTURE_EN_BIT) {
         alert('init error - must set option bits');
+    } else {
+        if((opts & STATUS_EN_BIT) && !(currOptions & STATUS_EN_BIT))
+            socket.on('status', showStatus);
+    
+        if((opts & DATA_EN_BIT) && !(currOptions & DATA_EN_BIT))
+            socket.on('data', showData);
+    
+        if((opts & HIST_EN_BIT) && !(currOptions & HIST_EN_BIT))
+            socket.on('histdata', showHistory);
+    
+        if((opts & CONFIG_EN_BIT) && !(currOptions & CONFIG_EN_BIT))
+            socket.on('config', saveConfig);
+    
+        if((opts & PURGE_EN_BIT) && !(currOptions & PURGE_EN_BIT))
+            socket.on('purge', showPurge);
+    
+        if((opts & WXF_EN_BIT) && !(currOptions & WXF_EN_BIT))
+            socket.on('wxfcst', showWXFcast);
+    
+        if((opts & WXO_EN_BIT) && !(currOptions & WXO_EN_BIT))
+            socket.on('wxobsv', showWXObsv);
 
-    if(optbits & STATUS_EN_BIT)
-        socket.on('status', showStatus);
+        if((opts & STATS_EN_BIT) && !(currOptions & STATS_EN_BIT))
+            socket.on('stats', saveStats);
 
-    if(optbits & DATA_EN_BIT)
-        socket.on('data', showData);
-
-    if(optbits & HIST_EN_BIT)
-        socket.on('histdata', showHistory);
-
-    if(optbits & CONFIG_EN_BIT)
-        socket.on('config', saveConfig);
-
-    if(optbits & PURGE_EN_BIT)
-        socket.on('purge', showPurge);
-
-    if(optbits & WXF_EN_BIT)
-        socket.on('wxfcst', showWXFcast);
-
-    if(optbits & WXO_EN_BIT)
-        socket.on('wxobsv', showWXObsv);
+        currOptions = opts;
+    }
 };
 
 function showStatus(data) {
@@ -111,6 +124,10 @@ function showWXFcast(data) {
 
 function saveConfig(cfg) {
     $(document).trigger('config', JSON.stringify(cfg));
+};
+
+function saveStats(stats) {
+    $(document).trigger('stats', JSON.stringify(stats));
 };
 
 function showHistory(hist) {
