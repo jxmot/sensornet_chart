@@ -186,6 +186,7 @@ $(document).on('hist_show', function(e, _hist) {
     
             histchart_cfg.yaxis = [
                 {
+                    min: undefined,
                     title: {
                         text: 'Temp °F'
                     },
