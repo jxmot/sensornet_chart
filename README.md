@@ -26,3 +26,55 @@ Every so often I would search for a JavaScript charting plugin that I could use 
     <li>Needs to be adapatble for charting <i>live data</i>.</li>
     <li>And it must look <i>good</i>.</li>
 </ul>
+
+I won't bore you with the details of every plugin I investigated. But I did write testing code for each as part of their evaluation.
+
+## Running the Application
+
+Select one or more sensors and then choose a date in the past. Click the "Get the Data" button and the data will be displayed.
+
+<p align="center">
+  <img src="./mdimg/ss_01-935x745.png" width="50%" alt="SensorNet Chart Screen Shot" txt="SensorNet Chart Screen Shot"/>
+</p>
+
+### Selecting Sensors
+
+One or more sensors can be selected. Each is color-coded and when its graph is drawn the temperature line color will match.
+
+When a single sensor selected the humidity line will use an alternate color.
+
+<p align="center">
+  <img src="./mdimg/ctl_01-885x240.png" width="75%" alt="SensorNet Chart Screen Shot" txt="SensorNet Chart Screen Shot"/>
+</p>
+
+
+
+
+
+
+After the data is charted you can:
+<ul>
+    <li>Zoom in or out by dragging through the chart along the X-axis.
+        or use the buttons at the top and right of the chart.</li>
+    <li>Pan the chart by clicking a button at the top and right 
+        of the chart.</li>
+    <li>Export SVG, PNG, or a CSV file containing chart data.</li>
+    <li>Enable or disable specific lines by clicking on the corresponding
+        colored dot and legend at the bottom of the chart.</li>
+</ul>
+
+
+## How it Works
+
+
+
+
+## Plug-in Modifications
+
+
+### Apex Chart
+
+
+### Zebra Datepicker
+
+
