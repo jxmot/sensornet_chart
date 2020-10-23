@@ -29,6 +29,18 @@ Every so often I would search for a JavaScript charting plugin that I could use 
 
 I won't bore you with the details of every plugin I investigated. But I did write testing code for each as part of their evaluation.
 
+## Dependencies
+
+This client requires the following:
+* The [SensorNet Server](<https://github.com/jxmot/node-dht-udp>). It is a Node.js application.
+   * Which requires [SensorNet Devices](<https://github.com/jxmot/esp8266-dht-udp>) to provide data
+   * Enough data to chart. 
+* Shared resources (js, css) with the [SensorNet Client](<https://github.com/jxmot/client-dht-udp>) application. Both utilize [Socket.io]() for communication. 
+
+## Live Demonstration
+
+A *live* demonstration can be seen at [????](). And [SensorNet Live]() can also be viewed.
+
 ## Running the Application
 
 Select one or more sensors and then choose a date in the past. Click the "Get the Data" button and the data will be displayed.
@@ -41,11 +53,23 @@ Select one or more sensors and then choose a date in the past. Click the "Get th
 
 One or more sensors can be selected. Each is color-coded and when its graph is drawn the temperature line color will match.
 
-When a single sensor selected the humidity line will use an alternate color.
-
 <p align="center">
   <img src="./mdimg/ctl_01-885x240.png" width="75%" alt="SensorNet Chart Screen Shot" txt="SensorNet Chart Screen Shot"/>
 </p>
+
+When a single sensor selected the humidity line will use an alternate color.
+
+<p align="center">
+  <img src="./mdimg/ss_02-935x745.png" width="50%" alt="SensorNet Chart Screen Shot" txt="SensorNet Chart Screen Shot"/>
+</p>
+
+Each sensors is associated with its own color to make it easier to distinguish them.
+
+<p align="center">
+  <img src="./mdimg/ss_03-935x745.png" width="50%" alt="SensorNet Chart Screen Shot" txt="SensorNet Chart Screen Shot"/>
+</p>
+
+
 
 
 
