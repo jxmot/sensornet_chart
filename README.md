@@ -49,7 +49,14 @@ Select one or more sensors and then choose a date in the past. Click the "Get th
   <img src="./mdimg/ss_01-935x745.png" width="50%" alt="SensorNet Chart Screen Shot" txt="SensorNet Chart Screen Shot"/>
 </p>
 
-### Selecting Sensors
+## GUI Design
+
+### Color Scheme
+
+### Operation
+
+
+## Selecting Sensors
 
 One or more sensors can be selected. Each is color-coded and when its graph is drawn the temperature line color will match.
 
@@ -69,12 +76,13 @@ Each sensors is associated with its own color to make it easier to distinguish t
   <img src="./mdimg/ss_03-935x745.png" width="50%" alt="SensorNet Chart Screen Shot" txt="SensorNet Chart Screen Shot"/>
 </p>
 
+## Selecting a Start Date
 
+When a date is selected from the picker and *epoch* value is calculated that represents 00:00 on the day chosen. The server will use that time stamp to search for sensor data.
 
-
-
-
-
+<p align="center">
+  <img src="./mdimg/ss_04-935x745.png" width="50%" alt="SensorNet Chart Screen Shot" txt="SensorNet Chart Screen Shot"/>
+</p>
 
 After the data is charted you can:
 <ul>
@@ -87,6 +95,7 @@ After the data is charted you can:
         colored dot and legend at the bottom of the chart.</li>
 </ul>
 
+Details can be found in the [Apex Charts](https://github.com/apexcharts/) documentation and demonstrations.
 
 ## How it Works
 
@@ -100,5 +109,9 @@ After the data is charted you can:
 
 
 ### Zebra Datepicker
+
+I chose the [Zebra Datepicker](https://github.com/stefangabos/Zebra_Datepicker) because of the features and a very good(*i.e. working*) demo page. I also like that it has 3 themes to choose from. I also browsed the source and 
+
+I decided that the *Bootstrap* theme would work the best because I was already using Bootstrap here and on *SensorNet Live*. 
 
 
