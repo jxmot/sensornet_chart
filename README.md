@@ -6,36 +6,15 @@ An application that is part of the [SensorNet](https://github.com/jxmot/sensorne
 
 I've been running SensorNet in my home for about 3 years and collecting all the sensor data. For charting the data I had been exporting it from the database and importing the data into a spreadsheet. And then graphing it there. Not ideal, but it did what I needed. 
 
-Every so often I would search for a JavaScript charting plugin that I could use <i>successfully</i>. But I had some requirements to satisfy:
-
-<ul>
-    <li>Open Source, with the following guidelines -</li>
-    <ul>
-        <li>It's "active", there must be evidence of recent development and
-        the closing of issues.</li>
-        <li>Clean Code, and it should be appropriately commented.</li>
-        <li>Documentation must be up to date with development efforts
-        and <i>readable</i>.</li>
-        <li>The author(s) are active in responding to issues.</li>
-    </ul>
-    <li>Any dependancies are also subject to the same requirement(s).</li>
-    <li>Must not require any backend code or running software in order
-    to operate normally.</li>
-    <li><strong>FREE!</strong> A <i>usable</i> plugin without any costs to
-    use it either commercially or non-commercially.</li>
-    <li>Needs to be adapatble for charting <i>live data</i>.</li>
-    <li>And it must look <i>good</i>.</li>
-</ul>
-
-I won't bore you with the details of every plugin I investigated. But I did write testing code for each as part of their evaluation.
+Every so often I would search for a JavaScript charting plugin that I could use <i>successfully</i>. I won't bore you with the details of every plugin I investigated. But I did write testing code for each as part of their evaluation.
 
 ## Dependencies
 
 This client requires the following:
-* The [SensorNet Server](<https://github.com/jxmot/node-dht-udp>). It is a Node.js application.
+* A running [SensorNet Server](<https://github.com/jxmot/node-dht-udp>). It is a Node.js application that collects sensor data, stores it, and forwards it to connected clients.
    * Which requires [SensorNet Devices](<https://github.com/jxmot/esp8266-dht-udp>) to provide data
    * Enough data to chart. 
-* Shared resources (js, css) with the [SensorNet Client](<https://github.com/jxmot/client-dht-udp>) application. Both utilize [Socket.io]() for communication. 
+* Shared resources (js, css) with the [SensorNet Client](<https://github.com/jxmot/client-dht-udp>) application. Both utilize [Socket.io](<https://socket.io/>) for communication with the SensorNet Server. 
 
 ## Live Demonstration
 
@@ -50,6 +29,8 @@ Select one or more sensors and then choose a date in the past. Click the "Get th
 </p>
 
 ## GUI Design
+
+
 
 ### Color Scheme
 
@@ -110,8 +91,30 @@ Details can be found in the [Apex Charts](https://github.com/apexcharts/) docume
 
 ### Zebra Datepicker
 
-I chose the [Zebra Datepicker](https://github.com/stefangabos/Zebra_Datepicker) because of the features and a very good(*i.e. working*) demo page. I also like that it has 3 themes to choose from. I also browsed the source and 
+I chose the [Zebra Datepicker](https://github.com/stefangabos/Zebra_Datepicker) because of the features and a very good(*i.e. working*) demo page. I also like that it has 3 themes to choose from. I also browsed the source and it's commented very well and is easy to follow.
 
 I decided that the *Bootstrap* theme would work the best because I was already using Bootstrap here and on *SensorNet Live*. 
 
 
+# SCRAP
+
+But I had some requirements to satisfy:
+
+<ul>
+    <li>Open Source, with the following guidelines -</li>
+    <ul>
+        <li>It's "active", there must be evidence of recent development and
+        the closing of issues.</li>
+        <li>Clean Code, and it should be appropriately commented.</li>
+        <li>Documentation must be up to date with development efforts
+        and <i>readable</i>.</li>
+        <li>The author(s) are active in responding to issues.</li>
+    </ul>
+    <li>Any dependancies are also subject to the same requirement(s).</li>
+    <li>Must not require any backend code or running software in order
+    to operate normally.</li>
+    <li><strong>FREE!</strong> A <i>usable</i> plugin without any costs to
+    use it either commercially or non-commercially.</li>
+    <li>Needs to be adapatble for charting <i>live data</i>.</li>
+    <li>And it must look <i>good</i>.</li>
+</ul>
