@@ -110,16 +110,20 @@ var histchart_cfg = {
         }
     ],
     xaxis: {
+        position: 'bottom',
         type: 'datetime',
         labels: {
             datetimeUTC: false
         }
     },
+    // https://apexcharts.com/docs/options/tooltip/
     tooltip: {
         shared: true,
         y: {
             formatter: function (val) {
-                return val.toFixed(2)
+                if (typeof val !== 'undefined' && val != null && isNaN(val) === false) {
+                    return val.toFixed(2);
+                } else return null;
             }
         },
         x: {
