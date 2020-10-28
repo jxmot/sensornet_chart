@@ -44,6 +44,13 @@ function loadTempSeries(data) {
     }
 };
 
+// 
+function valToFixed(val, places) {
+    if (typeof val !== 'undefined' && val != null && isNaN(val) === false) {
+        return val.toFixed(places);
+    } else return null;
+};
+
 newChart();
 
 // incoming configuration data...
@@ -139,7 +146,7 @@ $(document).on('hist_show', function(e, _hist) {
                             colors: [colors[hist.query.dev_id[0]][0]]
                         },
                         formatter: function (val) {
-                            return val.toFixed(0)
+                            return valToFixed(val,0);
                         }
                     }
                 },
@@ -157,7 +164,7 @@ $(document).on('hist_show', function(e, _hist) {
                             colors: [colors[hist.query.dev_id[0]][1]]
                         },
                         formatter: function (val) {
-                            return val.toFixed(0)
+                            return valToFixed(val,0);
                         }
                     }
                 }
@@ -205,7 +212,7 @@ $(document).on('hist_show', function(e, _hist) {
                     },
                     labels: {
                         formatter: function (val) {
-                            return val.toFixed(0)
+                            return valToFixed(val,0);
                         }
                     }
                 }
