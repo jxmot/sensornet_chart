@@ -4,7 +4,7 @@
 _*.*
 # And the following folder(s) -
 node_modules
-# _*
+_*
 /nbproject/private/
 /3rdparty/c3/c3-0.4.18/
 /3rdparty/d3/d3-3.5.6/
