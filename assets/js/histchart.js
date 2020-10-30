@@ -190,7 +190,7 @@ $(document).on('hist_show', function(e, _hist) {
     
             loadTempSeries(hist.data);
             // blank series object
-            var tmp = {
+            var bso = {
                 name: '',
                 data: []
             }
@@ -198,10 +198,12 @@ $(document).on('hist_show', function(e, _hist) {
             // create one series for each sensor and put it
             // into the chart config(no references!)
             for(ix = 0;ix < hist.query.dev_id.length; ix++) {
-                tmp.name = names[hist.query.dev_id[ix]];
-                tmp.data = JSON.parse(JSON.stringify(temps[hist.query.dev_id[ix]]));
-                histchart_cfg.series.push(JSON.parse(JSON.stringify(tmp)));
-                histchart_cfg.colors.push(colors[hist.query.dev_id[ix]][0]);
+                bso.name = names[hist.query.dev_id[ix]];
+                if(temps[hist.query.dev_id[ix]] !== undefined) {
+                    bso.data = JSON.parse(JSON.stringify(temps[hist.query.dev_id[ix]]));
+                    histchart_cfg.series.push(JSON.parse(JSON.stringify(bso)));
+                    histchart_cfg.colors.push(colors[hist.query.dev_id[ix]][0]);
+                }
             }
     
             histchart_cfg.yaxis = [
