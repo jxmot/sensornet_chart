@@ -96,7 +96,7 @@ var histchart_cfg = {
     },
     title: {
         text: 'Chart Ready is for Data',
-        align: 'left'
+        align: 'center'
     },
     yaxis: [
         {
