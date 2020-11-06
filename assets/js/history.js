@@ -7,7 +7,6 @@
 */
 // object to contain GUI selections as they occur
 var choices = {
-    dursel: '',
     datefrom: 0,
     dev_id: []
 };
@@ -45,7 +44,6 @@ $(document).ready(function() {
     $('#gethist').on('click', function() {
         if(choices.datefrom === 0) choices.datefrom = stats.limit;
         consolelog('#gethist - '+JSON.stringify(choices));
-        // {dursel: '24', dev_id:['ESP_49EC8B','ESP_AAAAAA',ESP_BBBBBB'}
         $(document).trigger('hist_request', choices);
     });
 
