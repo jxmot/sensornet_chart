@@ -3395,11 +3395,8 @@
                   columnDelimiter: ',',
                   headerCategory: 'category',
                   headerValue: 'value',
-// jxmot - Fixed, date formatter is useless without time
                   dateFormatter: function dateFormatter(timestamp) {
-                    var tmp = new Date(timestamp);
-                    var out = tmp.toDateString() + ' ' + tmp.toLocaleTimeString();
-                    return out;
+                    return new Date(timestamp).toDateString();
                   }
                 }
               },
