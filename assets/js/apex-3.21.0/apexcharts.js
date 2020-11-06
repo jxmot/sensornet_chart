@@ -10249,30 +10249,32 @@
             if (label.text) {
               w.globals.xaxisLabelsCount++;
             }
+// jxmot - FIX: do not draw X-axis label if it
+// placed beyond w.globals.gridWidth
+//console.log('t = '+label.text+'  x = '+label.x+'  w = '+ w.globals.gridWidth);
+            if(label.x < w.globals.gridWidth) {
+                var elText = graphics.drawText({
+                    x: label.x,
+                    y: _this.offY + w.config.xaxis.labels.offsetY + offsetYCorrection - (w.config.xaxis.position === 'top' ? w.globals.xAxisHeight + w.config.xaxis.axisTicks.height - 2 : 0),
+                    text: label.text,
+                    textAnchor: 'middle',
+                    fontWeight: label.isBold ? 600 : w.config.xaxis.labels.style.fontWeight,
+                    fontSize: _this.xaxisFontSize,
+                    fontFamily: _this.xaxisFontFamily,
+                    foreColor: Array.isArray(_this.xaxisForeColors) ? getCatForeColor() : _this.xaxisForeColors,
+                    isPlainText: false,
+                    cssClass: 'apexcharts-xaxis-label ' + w.config.xaxis.labels.style.cssClass
+                });
+                elXaxisTexts.add(elText);
+                var elTooltipTitle = document.createElementNS(w.globals.SVGNS, 'title');
+                elTooltipTitle.textContent = Array.isArray(label.text) ? label.text.join(' ') : label.text;
+                elText.node.appendChild(elTooltipTitle);
 
-            var elText = graphics.drawText({
-              x: label.x,
-              y: _this.offY + w.config.xaxis.labels.offsetY + offsetYCorrection - (w.config.xaxis.position === 'top' ? w.globals.xAxisHeight + w.config.xaxis.axisTicks.height - 2 : 0),
-              text: label.text,
-              textAnchor: 'middle',
-              fontWeight: label.isBold ? 600 : w.config.xaxis.labels.style.fontWeight,
-              fontSize: _this.xaxisFontSize,
-              fontFamily: _this.xaxisFontFamily,
-              foreColor: Array.isArray(_this.xaxisForeColors) ? getCatForeColor() : _this.xaxisForeColors,
-              isPlainText: false,
-              cssClass: 'apexcharts-xaxis-label ' + w.config.xaxis.labels.style.cssClass
-            });
-            elXaxisTexts.add(elText);
-            var elTooltipTitle = document.createElementNS(w.globals.SVGNS, 'title');
-            elTooltipTitle.textContent = Array.isArray(label.text) ? label.text.join(' ') : label.text;
-            elText.node.appendChild(elTooltipTitle);
-
-            if (label.text !== '') {
-              _this.drawnLabels.push(label.text);
-
-              _this.drawnLabelsRects.push(label);
+                if (label.text !== '') {
+                    _this.drawnLabels.push(label.text);
+                    _this.drawnLabelsRects.push(label);
+                }
             }
-
             xPos = xPos + colWidth;
           };
 
