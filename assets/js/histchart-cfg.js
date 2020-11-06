@@ -72,6 +72,7 @@ var histchart_cfg = {
             export: {
                 csv: {
                     filename: undefined,
+                    headerCategory: 'Date/Time',
                     dateFormatter: function dateFormatter(timestamp) {
                         var tmp = new Date(timestamp);
                         var out = tmp.toDateString() + ' ' + tmp.toLocaleTimeString();
