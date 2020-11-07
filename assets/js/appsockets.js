@@ -65,34 +65,29 @@ function initSocket(optbits = FUTURE_EN_BIT) {
     applyOptions(optbits);
 };
 
+function manageListeners(opts, bit, evt, func) {
+
+    if((opts & bit) && !(currOptions & bit)) {
+        socket.on(evt, func);
+    }
+
+    if(!(opts & bit) && (currOptions & bit)) {
+        socket.off(evt, func);
+    }
+};
+
 function applyOptions(opts) {
     if(opts === FUTURE_EN_BIT) {
         alert('init error - must set option bits');
     } else {
-        if((opts & STATUS_EN_BIT) && !(currOptions & STATUS_EN_BIT))
-            socket.on('status', showStatus);
-    
-        if((opts & DATA_EN_BIT) && !(currOptions & DATA_EN_BIT))
-            socket.on('data', showData);
-    
-        if((opts & HIST_EN_BIT) && !(currOptions & HIST_EN_BIT))
-            socket.on('histdata', showHistory);
-    
-        if((opts & CONFIG_EN_BIT) && !(currOptions & CONFIG_EN_BIT))
-            socket.on('config', saveConfig);
-    
-        if((opts & PURGE_EN_BIT) && !(currOptions & PURGE_EN_BIT))
-            socket.on('purge', showPurge);
-    
-        if((opts & WXF_EN_BIT) && !(currOptions & WXF_EN_BIT))
-            socket.on('wxfcst', showWXFcast);
-    
-        if((opts & WXO_EN_BIT) && !(currOptions & WXO_EN_BIT))
-            socket.on('wxobsv', showWXObsv);
-
-        if((opts & STATS_EN_BIT) && !(currOptions & STATS_EN_BIT))
-            socket.on('stats', saveStats);
-
+        manageListeners(opts, STATUS_EN_BIT, 'status',   showStatus);
+        manageListeners(opts, DATA_EN_BIT,   'data',     showData);
+        manageListeners(opts, HIST_EN_BIT,   'histdata', showHistory);
+        manageListeners(opts, CONFIG_EN_BIT, 'config',   saveConfig);
+        manageListeners(opts, PURGE_EN_BIT,  'purge',    showPurge);
+        manageListeners(opts, WXF_EN_BIT,    'wxfcst',   showWXFcast);
+        manageListeners(opts, WXO_EN_BIT,    'wxobsv',   showWXObsv);
+        manageListeners(opts, STATS_EN_BIT,  'stats',    saveStats);
         currOptions = opts;
     }
 };
