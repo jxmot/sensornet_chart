@@ -116,6 +116,9 @@ var histchart_cfg = {
         }
     ],
     xaxis: {
+        tooltip: {
+            enabled: false
+        },
         position: 'bottom',
         type: 'datetime',
         labels: {
