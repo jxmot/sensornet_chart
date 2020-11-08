@@ -108,6 +108,18 @@ $(document).ready(function() {
                     zdp.set_date(zdp_options.direction[0]);
             }
         };
+
+        // change the color of the sensor label when hovering
+        sens.parentElement.onmouseover = function() {
+            // do nothing if this sensor has been selected
+            if(this.children[0].checked === false)
+                this.style = `color:${colors[this.children[0].value][0]}!important;`;;
+        };
+
+        sens.parentElement.onmouseout = function() {
+            if(this.children[0].checked === false)
+                this.style = `color:;`;;
+        };
     });
 
     // Return a string "YYYY-MM-DD", and use either
@@ -146,10 +158,10 @@ $(document).ready(function() {
             consolelog(nextmid);
             var tmp = new Date(0);
             tmp.setUTCSeconds(lastmid);
-            console.log(tmp);
+            consolelog(tmp);
             tmp = new Date(0);
             tmp.setUTCSeconds(nextmid);
-            console.log(tmp);
+            consolelog(tmp);
         }
         // get ready for the request for sensor data,
         // place our calculated date & time in the
