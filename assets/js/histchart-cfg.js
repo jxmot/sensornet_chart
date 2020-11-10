@@ -25,10 +25,16 @@ var mins = {
     t: 0,
     h: 0
 };
+// contains the maximum values that are used for
+// scaling the Y-axes when chartiing a single sensor
+var maxs = {
+    t: 0,
+    h: 0
+};
 // bump the min & max a little so that graphs
 // don't touch the high/low of the scale(s)
-const MIN_ADJ = -2;
-const MAX_ADJ = +2
+const MIN_ADJ = -1;
+const MAX_ADJ = +1
 // device ID <-> recognizable name
 var names = [];
 

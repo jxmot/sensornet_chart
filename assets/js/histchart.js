@@ -2,7 +2,7 @@
 var chart = {};
 
 function newChart(newcfg = undefined) {
-    // create & render the chart using the data series
+    // create & render the chart
     if(newcfg === undefined)
         chart = new ApexCharts(document.querySelector('#chart'), histchart_cfg);
     else
@@ -12,24 +12,45 @@ function newChart(newcfg = undefined) {
 };
 
 function loadSeries(data) {
+var arr = [];
+
     temps = [];
     humid = [];
     mins = {t:1000,h:1000};
+    maxs = {t:0,h:0};
 
-    for(ix = 0; ix < data.length; ix++) {
-        var arr = [data[ix].tstamp, data[ix].t];
+    for(var ix = 0; ix < data.length; ix++) {
+        arr = [data[ix].tstamp, data[ix].t];
         temps.push(arr);
         if(data[ix].t < mins.t) {
             mins.t = data[ix].t;
         }
+        // do not place an 'else' here, otherwise
+        // values will be missed.
+        if(data[ix].t > maxs.t) {
+            maxs.t = data[ix].t;
+        }
+
         arr = [data[ix].tstamp, data[ix].h];
         humid.push(arr);
         if(data[ix].h < mins.h) {
             mins.h = data[ix].h;
         }
+
+        if(data[ix].h > maxs.h) {
+            maxs.h = data[ix].h;
+        }
     }
-    mins.t = mins.t + MIN_ADJ;
-    mins.h = mins.h + MIN_ADJ;
+    // adjust the min and max values so that they
+    // are equal to an integer value that is beyond
+    // the high/low values
+    mins.t = Math.floor(mins.t + MIN_ADJ);
+    mins.h = Math.floor(mins.h + MIN_ADJ);
+    maxs.t = Math.ceil(maxs.t + MAX_ADJ);
+    maxs.h = Math.ceil(maxs.h + MAX_ADJ);
+
+    consolelog('loadSeries min = '+JSON.stringify(mins));
+    consolelog('loadSeries max = '+JSON.stringify(maxs));
 };
 
 function loadTempSeries(data) {
@@ -135,6 +156,7 @@ $(document).on('hist_show', function(e, _hist) {
             histchart_cfg.yaxis = [
                 {
                     min: mins.t,
+                    max: maxs.t,
                     title: {
                         text: 'Temp °F',
                         style: {
@@ -152,6 +174,7 @@ $(document).on('hist_show', function(e, _hist) {
                 },
                 {
                     min: mins.h,
+                    max: maxs.h,
                     opposite: true,
                     title: {
                         text: '%RH',
