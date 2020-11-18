@@ -57,7 +57,6 @@ $(document).ready(function() {
     $(document).on('pickerupdate', function(e, oldest) {
         zdp_options.onSelect = pickSelect;
         zdp_options.direction[0] = theDay(parseInt(oldest/1000));
-//        zdp_options.direction[0] = theDay(1599340800);
         zdp_options.direction[1] = theDay();
         $('#histpicker').Zebra_DatePicker(zdp_options);
         $('#histpicker').data('Zebra_DatePicker').set_date(zdp_options.direction[0]);
@@ -75,6 +74,7 @@ $(document).ready(function() {
             // manage the color with a css class when the checkbox 
             // has changed to either state
             if(this.checked === true) {
+                // https://caniuse.com/template-literals
                 this.parentElement.style = `color:${colors[this.value][0]}!important`;
                 senscount += 1;
                 // ADD this sensor to the choices.dev_id[] array
@@ -113,12 +113,12 @@ $(document).ready(function() {
         sens.parentElement.onmouseover = function() {
             // do nothing if this sensor has been selected
             if(this.children[0].checked === false)
-                this.style = `color:${colors[this.children[0].value][0]}!important;`;;
+                this.style = `color:${colors[this.children[0].value][0]}!important;`;
         };
 
         sens.parentElement.onmouseout = function() {
             if(this.children[0].checked === false)
-                this.style = `color:;`;;
+                this.style = `color:;`;
         };
     });
 
