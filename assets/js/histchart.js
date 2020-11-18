@@ -49,8 +49,8 @@ var arr = [];
     maxs.t = Math.ceil(maxs.t + MAX_ADJ);
     maxs.h = Math.ceil(maxs.h + MAX_ADJ);
 
-    consolelog('loadSeries min = '+JSON.stringify(mins));
-    consolelog('loadSeries max = '+JSON.stringify(maxs));
+    consolelog(`loadSeries min = ${JSON.stringify(mins)}`);
+    consolelog(`loadSeries max = ${JSON.stringify(maxs)}`);
 };
 
 function loadTempSeries(data) {
@@ -88,14 +88,20 @@ $(document).on('config', function(e, _config) {
     var devs = Object.entries(names);
 
     // iterate through all of the sensor selection checkboxes
-    // and initialize them by adding a device ID and name.
-    var sensors = document.getElementsByName('histsel_ctrl')
+    // and initialize them by adding a device ID, name, and color.
+    var sensors = document.getElementsByName('histsel_ctrl');
     var sensindex = 0;
     sensors.forEach(function(sens) {
         sens.value = devs[sensindex][0];
         sens.dataset.color = sensindex;
+
+        // https://caniuse.com/template-literals
         sens.nextElementSibling.textContent = `\u00a0\u00a0${devs[sensindex][1]}`
         consolelog(`${sens.nextElementSibling.textContent}`);
+
+        // if order of <input> and <span> is swapped then use 
+        // previousElementSibling instead.
+
         sensindex++;
     });
 });
@@ -128,13 +134,13 @@ $(document).on('hist_show', function(e, _hist) {
     var hist = JSON.parse(_hist);
     if(hist.data === null) {
         alert('no data found');
-        consolelog('hist_show - data is null - '+_hist);
+        consolelog(`hist_show - data is null - ${_hist}`);
         if(hist.err !== undefined) {
-            alert('ERROR - err = '+JSON.stringify(hist.err));
-            consolelog('hist_show - err = '+_hist);
+            alert(`ERROR - err = ${JSON.stringify(hist.err)}`);
+            consolelog(`hist_show - err = ${_hist}`);
         }
     } else {
-        consolelog('hist_show - records = '+hist.data.length);
+        consolelog(`hist_show - records = ${hist.data.length}`);
         // if data is a SINGLE sensor then....
         if(hist.query.dev_id.length === 1) {
             chart.destroy();
@@ -232,6 +238,7 @@ $(document).on('hist_show', function(e, _hist) {
             histchart_cfg.yaxis = [
                 {
                     min: undefined,
+                    max: undefined,
                     title: {
                         text: 'Temp °F'
                     },
