@@ -73,7 +73,19 @@ var histchart_cfg = {
         toolbar: {
             autoSelected: 'zoom',
             tools: { 
-                download: true 
+                // individual download types can 
+                // be enabled/disabled - 
+                //        [SVG,  PNG,  CSV]
+                download: [true, true, true],
+                // do not set all to false, do
+                // this instead -
+                // download: false
+                // or enable all with this - 
+                // download: true
+
+                // title for menu, over-rides the
+                // default 'Menu'. Plain text only.
+                menutitle: 'Download Chart'
             },
             export: {
                 csv: {
