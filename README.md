@@ -30,12 +30,22 @@ Select one or more sensors and then choose a date in the past. Click the "Get th
 
 ## GUI Design
 
+<p align="center">
+<i>under contstruction</i>
+</p>
 
 
 ### Color Scheme
 
+<p align="center">
+<i>under contstruction</i>
+</p>
+
 ### Operation
 
+<p align="center">
+<i>under contstruction</i>
+</p>
 
 ## Selecting Sensors
 
@@ -80,14 +90,22 @@ Details can be found in the [Apex Charts](https://github.com/apexcharts/) docume
 
 ## How it Works
 
-
-
+<p align="center">
+<i>under contstruction</i>
+</p>
 
 ## Plug-in Modifications
+
+<p align="center">
+<i>under contstruction</i>
+</p>
 
 
 ### Apex Chart
 
+<p align="center">
+<i>under contstruction</i>
+</p>
 
 ### Zebra Datepicker
 
@@ -95,26 +113,3 @@ I chose the [Zebra Datepicker](https://github.com/stefangabos/Zebra_Datepicker) 
 
 I decided that the *Bootstrap* theme would work the best because I was already using Bootstrap here and on *SensorNet Live*. 
 
-
-# SCRAP
-
-But I had some requirements to satisfy:
-
-<ul>
-    <li>Open Source, with the following guidelines -</li>
-    <ul>
-        <li>It's "active", there must be evidence of recent development and
-        the closing of issues.</li>
-        <li>Clean Code, and it should be appropriately commented.</li>
-        <li>Documentation must be up to date with development efforts
-        and <i>readable</i>.</li>
-        <li>The author(s) are active in responding to issues.</li>
-    </ul>
-    <li>Any dependancies are also subject to the same requirement(s).</li>
-    <li>Must not require any backend code or running software in order
-    to operate normally.</li>
-    <li><strong>FREE!</strong> A <i>usable</i> plugin without any costs to
-    use it either commercially or non-commercially.</li>
-    <li>Needs to be adapatble for charting <i>live data</i>.</li>
-    <li>And it must look <i>good</i>.</li>
-</ul>
