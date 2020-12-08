@@ -20,7 +20,7 @@ error_log
 # Files created by winmerge - 
 *.*.bak
 # Notepad++ session files.
-# *.session
+*.session
 # Links (FF)
 # *.url
 # thumbnail files
