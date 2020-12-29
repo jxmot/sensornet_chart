@@ -114,4 +114,4 @@ I chose the [Zebra Datepicker](https://github.com/stefangabos/Zebra_Datepicker) 
 I decided that the *Bootstrap* theme would work the best because I was already using Bootstrap here and on *SensorNet Live*. 
 
 ---
-<img src="http://webexperiment.info/extcounter/mdcount.php?id=github-graphql-snippets">
+<img src="http://webexperiment.info/extcounter/mdcount.php?id=sensornet_chart">
