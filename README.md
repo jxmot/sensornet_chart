@@ -18,7 +18,7 @@ This client requires the following:
 
 ## Live Demonstration
 
-A *live* demonstration can be seen at [????](). And [SensorNet Live]() can also be viewed.
+A *live* demonstration can be seen at [my website](http://webexperiment.info/portfolio/sensornet/?mode=hist). And [SensorNet Live](http://webexperiment.info/portfolio/sensornet/) can also be viewed.
 
 ## Running the Application
 
